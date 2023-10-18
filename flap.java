@@ -15,7 +15,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     private int SPEED = 5;
     private double GRAVITY = 0.4;
     private int JUMP_STRENGTH = 10;
-    Image bird_img = new ImageIcon("bird.png").getImage();
+    Image birdImage = new ImageIcon("bird.png").getImage();
+    int birdSize = 30;
+    Image bird_img = birdImage.getScaledInstance(birdSize, birdSize, Image.SCALE_SMOOTH);
     Image ground_img = new ImageIcon("ground.png").getImage();
 
     private List<Rectangle> obstacles;
@@ -84,8 +86,8 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             for (int i = 0; i < obstacles.size(); i += 2) {
                 Rectangle obstacle = obstacles.get(i);
                 Rectangle bottomObstacle = obstacles.get(i + 1);
-                if (birdX + 50 > obstacle.x && birdX < obstacle.x + 50) {
-                    if (birdY < obstacle.height || birdY + 50 > bottomObstacle.y) {
+                if (birdX + birdSize > obstacle.x && birdX < obstacle.x + 50) {
+                    if (birdY < obstacle.height || birdY + birdSize > bottomObstacle.y) {
                         gameover = true;
                     }
                 }
